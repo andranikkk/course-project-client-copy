@@ -34,6 +34,7 @@ const CreateItem: React.FC<Props> = ({ isOpen, onClose }) => {
     control,
     formState: { errors },
     setValue,
+    reset,
   } = useForm()
 
   if (!id) {
@@ -49,6 +50,7 @@ const CreateItem: React.FC<Props> = ({ isOpen, onClose }) => {
         categoryId: data.categoryId,
         content: data.content,
       }).unwrap()
+      reset()
       setValue("item", "")
       triggerGetAllItemsQuery()
       onClose()
@@ -101,7 +103,7 @@ const CreateItem: React.FC<Props> = ({ isOpen, onClose }) => {
                   defaultValue=""
                   rules={{ required: "categoryId is required" }}
                   render={({ field }) => (
-                    <Input {...field} label="categoryId" type="text" />
+                    <Input {...field} label="Category" type="text" />
                   )}
                 />
                 {errors.name && <ErrorMessage error={error} />}
@@ -111,7 +113,7 @@ const CreateItem: React.FC<Props> = ({ isOpen, onClose }) => {
                   defaultValue=""
                   rules={{ required: "content is required" }}
                   render={({ field }) => (
-                    <Input {...field} label="content" type="text" />
+                    <Input {...field} label="Content" type="text" />
                   )}
                 />
                 {errors.name && <ErrorMessage error={error} />}

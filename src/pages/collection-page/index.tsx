@@ -2,6 +2,8 @@
 import { useParams } from "react-router-dom"
 import { useGetCollectionByIdQuery } from "../../app/services/collectionApi"
 import {
+  Autocomplete,
+  AutocompleteItem,
   Card,
   CardBody,
   CardHeader,
@@ -74,8 +76,23 @@ const CollectionPage = () => {
             )}
           </CardBody>
         </Card>
-        <ItemTable items={collsItems} />
-        <CreateItem onClose={onClose} isOpen={isOpen} />
+        <div className="flex w-full flex-col">
+          <Card className="mb-4 p-4">
+            <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
+              <Autocomplete
+                label="Search an item"
+                className="max-w-xs"
+                defaultItems={collsItems}
+              >
+                {item => (
+                  <AutocompleteItem key={item.id}>{item.name}</AutocompleteItem>
+                )}
+              </Autocomplete>
+            </div>
+          </Card>
+          <ItemTable items={collsItems} />
+          <CreateItem onClose={onClose} isOpen={isOpen} />
+        </div>
       </div>
     </>
   )
