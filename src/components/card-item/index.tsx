@@ -41,10 +41,10 @@ const ItemCard: React.FC<Props> = ({
         onPress={() => navigate(`/items/${id}`)}
       >
         <CardHeader className="pb-0 pt-2 px-4 flex-col items-center">
-          {tags}
+          {name}
         </CardHeader>
         <CardBody>
-          <h4 className="font-bold text-large mb-2">{name}</h4>
+          <h4 className="font-bold text-large mb-2">{tags}</h4>
           <p className="text-default-500 flex items-center gap-2">
             {categoryId}
           </p>
